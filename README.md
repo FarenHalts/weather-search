@@ -1,5 +1,7 @@
 # Weather Search
 
+Access the project: [Weather Search](https://weather-search-xi.vercel.app/)
+
 ## Project setup
 ```
 npm install
