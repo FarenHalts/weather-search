@@ -30,6 +30,7 @@ import {
     mapGetters,
     mapActions
 } from 'vuex';
+import Cookies from 'js-cookie';
 
 import citiesTable from './components/citiesTable.vue';
 import WeatherModal from './components/weatherModal.vue';
@@ -67,13 +68,13 @@ export default {
         ...mapActions(['toggleModal']),
         async getAllStatesService() {
             try {
-                const storedStates = localStorage.getItem('allStates');
+                const storedStates = Cookies.get('allStates')
                 if (storedStates) {
                     this.allStates = JSON.parse(storedStates)
                 } else {
                     const response = await axios.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome')
                     this.allStates = response.data
-                    localStorage.setItem('allStates', JSON.stringify(this.allStates))
+                    Cookies.set('allStates', JSON.stringify(this.allStates))
                 }
             } catch (error) {
                 alert('Erro ao obter estados:', error)
@@ -203,7 +204,6 @@ body {
 }
 
 #app {
-    // font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
