@@ -118,7 +118,7 @@ export default {
         },
         async requestGeolocationInformation() {
             try {
-                const response = await axios.get(`http://api.openweathermap.org/geo/1.0/direct?q=${this.selectedCitieInformation.nome}&limit=5&appid=${API_KEY}`)
+                const response = await axios.get(`https://api.openweathermap.org/geo/1.0/direct?q=${this.selectedCitieInformation.nome}&limit=5&appid=${API_KEY}`)
                 this.geolocationData = {
                     'latitude': response.data[0].lat,
                     'longitude': response.data[0].lon
